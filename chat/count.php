@@ -1,0 +1,1 @@
+<?if (isset($user))query("DELETE FROM `chat_who` WHERE `id_user` = '$user[id]'");query("DELETE FROM `chat_who` WHERE `time` < '".($time-120)."'");echo '('.result(query("SELECT COUNT(*) FROM `chat_who`"),0).' человек)';?>
