@@ -46,7 +46,7 @@ exit;
 
 ?>
 <div class='nav2'><div class="friends_access_list attach_block mt_0 grey"> <? echo group($avtor['id'])." ";?> <a href="/info.php?id=<?=$notes['id_user']?>"><span style="color:#79358c"><b><? echo " ".$avtor['nick']." ";?> </b></span></a> : <? echo '<a href="/forum/'.$notes['id_forum'].'/'.$notes['id_razdel'].'/'.$notes['id'].'/">';?>
-<span style="color:#06F;"><? echo $notes['name']; ?></span></a></div>
+<span style="color:#06F;"><? echo output_text($notes['name']); ?></span></a></div>
 <?
 echo "<form method='post' action='share.php?id=".intval($_GET['id'])."'>";
 echo $tPanel;

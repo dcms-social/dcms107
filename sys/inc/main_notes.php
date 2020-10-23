@@ -8,8 +8,8 @@ if (rows($q) == 0){
     <div class="nav2" style="color:#666;">Записей нет</div><?php
 }else{
 while ($post = fetch_assoc($q)){
-$note_name = '<a href="/plugins/notes/list.php?id=' . $post['id'] . '"><span style="color:#06f">' . text($post['name']) . '</span></a>';
-$note_text = $post['msg'];
+$note_name = '<a href="/plugins/notes/list.php?id=' . $post['id'] . '"><span style="color:#06f">' . output_text(text($post['name'])) . '</span></a>';
+$note_text = output_text($post['msg']);
 $count_comm = result(query("SELECT COUNT(`id`) FROM `notes_komm` WHERE `id_notes`='" . $post['id'] . "'"), 0);
 echo "<div style='border-bottom:1px #d5dde5 solid;' class='nav2'>\n";
 ?><?= group($post['id_user']); ?>
