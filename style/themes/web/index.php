@@ -91,25 +91,26 @@ while ($them = fetch_assoc($q))
 		echo '<div class="nav2">';
 		$num = 0;
 	}
-	
+
 	// Иконка темы
 	echo '<img src="/style/themes/' . $set['set_them'] . '/forum/14/them_' . $them['up'] . $them['close'] . '.png" alt="" /> ';
 	// Ссылка на тему
 	echo '<a href="/forum/' . $them['id_forum'] . '/' . $them['id_razdel'] . '/' . $them['id'] . '/"><b>' . htmlspecialchars($them['name']) . '</b></a> 
 	<a href="/forum/' .$them['id_forum'] . '/' . $them['id_razdel']  . '/' . $them['id'] . '/?page=' . $pageEnd . '">
 	(' . result(query("SELECT COUNT(`id`) FROM `forum_p` WHERE `id_forum` = '".$them['id_forum']."' AND `id_razdel` = '".$them['id_razdel']."' AND `id_them` = '".$them['id']."'"),0) . ')</a><br/>';
-	echo rez_text($them['text'],112).'<br/>';
+  $txt = output_text($them['text']);
+	echo rez_text($txt,112).'<br/>';
 	// Автор темы
 	echo group($them['id_user']).' ';
 	echo user::nick($them['id_user'],1,1,1).' (' . vremja($them['time_create']) . ') ';
 
-	// Последний пост 
+	// Последний пост
 	$post = f_array(query("SELECT `id`,`time`,`id_user` FROM `forum_p` WHERE `id_them` = '$them[id]' AND `id_forum` = '".$them['id_forum']."' AND `id_razdel` = '".$them['id_razdel']."'  ORDER BY `time` DESC LIMIT 1"));
 	if($post['id']){
 	// Автор последнего поста
 	echo '/ '.user::nick($post['id_user'],1,1,1).' (' . vremja($post['time']) . ')<br />';
 	}
-	
+
 	echo '</div>';
 
 }
