@@ -37,7 +37,8 @@ $start = $set['p_str'] * $page - $set['p_str'];
 $q=query("SELECT id_them, msg,id, id_razdel, id_forum,id_them FROM `forum_p` WHERE `id_user`='".$ank['id']."' ORDER BY `time` DESC LIMIT $start,$set[p_str]");
 while($post=fetch_assoc($q)){
 echo "<div class='nav1'><a href='/forum/".$post['id_forum']."/".$post['id_razdel']."/".$post['id_them']."/'>";
-echo rez_text($post['msg'],80)." ...";
+$msg =  output_text($post['msg']);
+echo rez_text($msg,80)." ...";
 echo "</a></div>";
 }
 if ($k_page > 1)str('them.php?id='.$ank['id'].'&komm&amp;', $k_page, $page); // Вывод страниц
