@@ -10,7 +10,7 @@ include_once '../../sys/inc/ipua.php';
 include_once '../../sys/inc/fnc.php';
 include_once '../../sys/inc/user.php';
 
-/* Бан пользователя */ 
+/* Бан пользователя */
 if (isset($user) && result(query("SELECT COUNT(*) FROM `ban` WHERE `razdel` = 'notes' AND `id_user` = '$user[id]' AND (`time` > '$time' OR `view` = '0' OR `navsegda` = '1')"), 0)!=0)
 {
 header('Location: /ban.php?'.SID);exit;
@@ -30,14 +30,14 @@ echo "</form></div>\n";
 echo "<div id='comments' class='menus'>";
 echo "<div class='webmenu'>";
 echo "<a href='index.php' class='activ'>Дневники</a>";
-echo "</div>"; 
+echo "</div>";
 echo "<div class='webmenu last'>";
 echo "<a href='dir.php'>Категории</a>";
-echo "</div>"; 
+echo "</div>";
         if(isset($user)){
 echo "<div class='webmenu last'>";
 echo "<a href='user.php?id=".$user['id']."'>Мои</a>";
-echo "</div>"; 
+echo "</div>";
 }
 echo "</div>";
 
@@ -104,10 +104,11 @@ $num=1;
 {echo "  <div class='nav2'>\n";
 $num=0;}
 /*---------------------------*/
+  $text = output_text($post['msg']);
 echo group($post['id_user'])." ";
 echo user::nick($post['id_user'],1,1,1)." : <a href='/plugins/notes/list.php?id=".$post['id']."'>".text($post['name'])."</a>";
 echo '<span style="float:right;color:#666;">'.vremja($post['time']).'</span><br/>';
-echo rez_text($post['msg'],80)." <br/>\n";
+echo rez_text($text,80)." <br/>\n";
 notes_sh($post['id']);
 echo "<br/><img src='/style/icons/uv.png'> <font color=#666>(".result(query("SELECT COUNT(`id`)FROM `notes_komm` WHERE `id_notes`='$post[id]'"),0).") &bull;";
 echo " <a href='fav.php?id=".$post['id']."'><img src='/style/icons/add_fav.gif'> (".result(query("SELECT COUNT(`id`)FROM `bookmarks` WHERE `id_object`='".$post['id']."' AND `type`='notes'"),0).")</a> &bull; ";
