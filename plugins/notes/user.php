@@ -5,7 +5,7 @@
 Автор: Искатель
 ---------------------------------------
 Этот скрипт распостроняется по лицензии
-движка Dcms-Social. 
+движка Dcms-Social.
 При использовании указывать ссылку на
 оф. сайт http://dcms-social.ru
 ---------------------------------------
@@ -23,7 +23,7 @@ include_once '../../sys/inc/db_connect.php';
 include_once '../../sys/inc/ipua.php';
 include_once '../../sys/inc/fnc.php';
 include_once '../../sys/inc/user.php';
-/* Бан пользователя */ 
+/* Бан пользователя */
 if (result(query("SELECT COUNT(*) FROM `ban` WHERE `razdel` = 'notes' AND `id_user` = '$user[id]' AND (`time` > '$time' OR `view` = '0' OR `navsegda` = '1')"), 0)!=0)
 {
 header('Location: /ban.php?'.SID);exit;
@@ -86,7 +86,7 @@ echo "  </div>\n";
 $num=0;
 while ($post = fetch_assoc($q))
 {
-/*-----------зебра-----------*/ 
+/*-----------зебра-----------*/
 	if ($num==0){
 		echo '<div class="nav1">';
 		$num=1;
@@ -111,8 +111,11 @@ echo "   </div>\n";
 }
 echo "</table>\n";
 
-if (isset($_GET['sort'])) $dop="sort=$_GET[sort]&amp;";
+if (isset($_GET['sort']))
+	$dop="sort=".htmlspecialchars($_GET['sort'])."&amp;";
 else $dop='';
+
 if ($k_page>1)str('?id=' . $ank['id'] . '&amp;'.$dop.'',$k_page,$page); // Вывод страниц
+
 include_once '../../sys/inc/tfoot.php';
 ?>
